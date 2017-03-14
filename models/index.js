@@ -21,12 +21,12 @@ var Page = db.define('page', {
     tags: {
         type: Sequelize.ARRAY(Sequelize.TEXT),
         // page.tags = 'programming,coding,javascript'
-        set: function (value) {
+        set: function(value) {
 
             var arrayOfTags;
 
             if (typeof value === 'string') {
-                arrayOfTags = value.split(',').map(function (s) {
+                arrayOfTags = value.split(',').map(function(s) {
                     return s.trim();
                 });
                 this.setDataValue('tags', arrayOfTags);
@@ -38,22 +38,22 @@ var Page = db.define('page', {
     }
 }, {
     hooks: {
-        beforeValidate: function (page) {
+        beforeValidate: function(page) {
             if (page.title) {
                 page.urlTitle = page.title.replace(/\s+/g, '_').replace(/\W/g, '');
             }
         }
     },
     getterMethods: {
-        route: function () {
+        route: function() {
             return '/wiki/' + this.urlTitle;
         },
-        renderedContent: function () {
+        renderedContent: function() {
             return marked(this.content);
         }
     },
     classMethods: {
-        findByTag: function (tag) {
+        findByTag: function(tag) {
             return Page.findAll({
                 where: {
                     tags: {
@@ -64,7 +64,7 @@ var Page = db.define('page', {
         }
     },
     instanceMethods: {
-        findSimilar: function () {
+        findSimilar: function() {
             return Page.findAll({
                 where: {
                     tags: {
