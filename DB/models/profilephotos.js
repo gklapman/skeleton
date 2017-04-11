@@ -17,7 +17,7 @@ var Promise = require('bluebird');
 
 
 
-var Photo = db.define('photo', {
+var ProfilePhoto = db.define('profilephoto', {
     filepath: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -25,4 +25,4 @@ var Photo = db.define('photo', {
 })
 
 
-module.exports = Photo
+module.exports = ProfilePhoto

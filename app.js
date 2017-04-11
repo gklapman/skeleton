@@ -2,13 +2,15 @@ var express = require('express');
 var nunjucks = require('nunjucks');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
-var { db, User, Location } = require('./db/index');
+var {   db, User, Location, ProfilePhoto, LocationPhoto, Activity, Restaurant, Hotel, LocationFriendship, Friend } = require('./db/index');
 var Sequelize = require('sequelize');
 var Promise = require('bluebird')
 
 var app = express();
 
-var usersRouter = require('./routes/users');
+
+
+var travelpageRouter = require('./routes/travelpage');
 var travelfeedRouter = require('./routes/travelfeed');
 var locationRouter = require('./routes/location')
 var createaccountRouter = require('./routes/createaccount')
@@ -31,14 +33,15 @@ app.use(express.static(__dirname + '/node_modules'));
 app.use(express.static(__dirname + '/public'));
 
 
-app.use('/users', usersRouter);
+app.use('/travelpage', travelpageRouter);
 app.use('/travelfeed', travelfeedRouter);
 app.use('/location', locationRouter);
 app.use('/createaccount', createaccountRouter);
 app.use('/photos', photoRouter)
 
-app.get('/', function(req, res) {
-    res.redirect('/travelfeed');
+
+app.use('/', function(req, res, next) {
+    res.redirect('/createaccount');
 });
 
 

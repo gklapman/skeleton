@@ -51,9 +51,14 @@ var User = db.define('user', {
         type: Sequelize.DATE
     },
     gender: {
-        type: Sequelize.ENUM('male', 'female') /*SHOULD I ADD MORE CHOICES? SHOULD THIS BE NOT NULL?*/
+        type: Sequelize.ENUM('male', 'female') /*SHOULD I ADD MORE CHOICES?*/
+    },
+    role: {
+        type: Sequelize.ENUM('admin', 'general', 'disabled'),
+        defaultValue: 'general'
     },
 
+    
 
 
     //     // }, {

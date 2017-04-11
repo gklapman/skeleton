@@ -1,9 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 
-
-
-var Restaurant = db.define('restaurant', {
+var Accomadation = db.define('accomadation', {
 	name: {
 		type: Sequelize.STRING,
 		allowNull: false, 
@@ -20,4 +18,4 @@ var Restaurant = db.define('restaurant', {
 	}
 })
 
-module.exports = Restaurant
+module.exports = Accomadation

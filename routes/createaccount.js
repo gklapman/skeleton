@@ -8,6 +8,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
+    console.log('inside of router post')
 
     //WILL WANT TO CHECK IF EMAIL ALREADY EXISTS
     return User.findOne({

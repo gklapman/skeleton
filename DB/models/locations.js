@@ -12,10 +12,15 @@ var Location = db.define('location', {
     overall_review: {
         type: Sequelize.TEXT
     },
-
-    reviews: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
+    starting_date: {
+        type: Sequelize.DATE
+        // defaultValue: 'unknown' //can you do this? probably not...
+    }, 
+    ending_date: {
+        type: Sequelize.DATE,
+        // defaultValue: 'unknown'
     },
+
 });
 
 
