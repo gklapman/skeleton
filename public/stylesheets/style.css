@@ -6,3 +6,11 @@ body {
 a {
     color: #00B7FF;
 }
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	background-color: #f8f8f8;
+	height: 60px;
+}

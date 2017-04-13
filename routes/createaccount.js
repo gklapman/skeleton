@@ -1,14 +1,16 @@
 var express = require('express');
 var router = express.Router();
-var { db, User, Location } = require('../db/index')
+var {   db, User, Location, ProfilePhoto, LocationPhoto, Activity, Restaurant, Accomadation, LocationFriendship, Friend } = require('../db/index');
 var Promise = require('bluebird');
+var fs = require('fs');
 
-router.get('/', (req, res, next) => {
-    res.render("createaccount")
-})
 
+
+
+
+// /api/createaccount
 router.post('/', (req, res, next) => {
-    console.log('inside of router post')
+    console.log('inside of router post with this body ', req.body)
 
     //WILL WANT TO CHECK IF EMAIL ALREADY EXISTS
     return User.findOne({
@@ -21,16 +23,16 @@ router.post('/', (req, res, next) => {
                 res.send('Sorry, this email is already registered')
                     // CAN I ADD SOMETHING HERE WITH RESPOND WITH THE VALIDATION EMAIL
             } else {
-                User.create({
+                return User.create({
 
                     email: req.body.email,
                     first_name: req.body.first_name,
                     last_name: req.body.last_name,
+                    // password: req.body.password,
                     birthday: req.body.birthday,
                     gender: req.body.gender,
                     current_city: req.body.current_city,
-                    user_pic: req.body.user_pic,
-
+                    
 
                 })
 
@@ -39,11 +41,17 @@ router.post('/', (req, res, next) => {
 
 
 
-    .then(() => {
-            res.redirect('/travelfeed')
-        })
+    .then(user => {
+            res.json(user)
+    })
     .catch(next)
 })
+
+
+    
+
+    
+
 
 
 

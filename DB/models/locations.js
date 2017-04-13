@@ -14,19 +14,13 @@ var Location = db.define('location', {
     },
     starting_date: {
         type: Sequelize.DATE
-        // defaultValue: 'unknown' //can you do this? probably not...
     }, 
     ending_date: {
         type: Sequelize.DATE,
-        // defaultValue: 'unknown'
     },
 
 });
 
-
-
-// // SQL does not distinguish 1-1 from 1-n.
-// // Sequelize does distinguish 1-1 from 1-m but does enforce it
 
 
 module.exports = Location

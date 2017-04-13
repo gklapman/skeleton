@@ -8,16 +8,8 @@ var Friend = require('./models/friends')
 var LocationPhoto = require('./models/locationphotos')
 var Restaurant = require('./models/restaurants')
 var LocationFriendship = require('./models/locationfriendships')
-    // var Location = require('./models/location');
-    // var Sequelize = require('sequelize')
+var Sequelize = require('sequelize')
 
-// Location.belongToMany(User)
-// User.belongsToMany(Location)
-
-// Location.belongsTo(User)
-// DB Layer FK on location. ORM layer: 1-1 relationship
-// Location.addUser
-// Location.setUser
 
 User.hasMany(Location)
 
@@ -34,13 +26,13 @@ User.belongsToMany(User, {
 	foreignKey: 'user_1Id'
 })
 
-User.belongsToMany(User, {
-    as: 'user1', //this is the user inside parens
-    through: {
-        model: Friend, 
-    },
-    foreignKey: 'user_2Id',
-})
+// User.belongsToMany(User, {
+//     as: 'user1', //this is the user inside parens
+//     through: {
+//         model: Friend, 
+//     },
+//     foreignKey: 'user_2Id',
+// })
 
 
 
@@ -49,48 +41,15 @@ Location.belongsToMany(Friend, {
     {model: LocationFriendship}   
 })
 
-Location.hasMany(Accomadation)
-Location.hasMany(Activity)
-Location.hasMany(Restaurant)
+Accomadation.belongsTo(Location, {onDelete: 'cascade', hooks: true})
+Activity.belongsTo(Location, {onDelete: 'cascade', hooks: true})
+Restaurant.belongsTo(Location, {onDelete: 'cascade', hooks: true})
 
-// Location.belongsToMany(Location, {
-// 	as: 'user_2_location',
-// 	through: {
-// 		model: Friend
-// 	}, 
-// 	foreignKey: 'user_1_locationId'
-// })
+//FIRST TABLE HAS THE MAGIC KEY
 
 
 
-// Post.belongsToMany(Tag, {
-//   through: {
-//     model: ItemTag,
-//     unique: false,
-//     scope: {
-//       taggable: 'post'
-//     }
-//   },
-//   foreignKey: 'taggable_id',
-//   constraints: false
-// });
-// Tag.belongsToMany(Post, {
-//   through: {
-//     model: ItemTag,
-//     unique: false
-//   },
-//   foreignKey: 'tag_id',
-//   constraints: false
-// });
 
-
-
-// User.hasMany(Location); // DB layer FK on Location. ORM layer: 1-many relationship
-// User.addLocation
-// User.getlocations
-// User.setLocation
-// User.addLoications
-// User.setLocations
 
 module.exports = {
     db,

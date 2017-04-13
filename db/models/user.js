@@ -13,6 +13,10 @@ var User = db.define('user', {
 
 
     },
+    password: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
 
     // password_hash: DataTypes.STRING,
     // password: {
@@ -29,7 +33,7 @@ var User = db.define('user', {
     //         }
     //     }
     // },
-
+    
     first_name: {
         type: Sequelize.STRING(20),
         allowNull: false
@@ -41,12 +45,8 @@ var User = db.define('user', {
     current_city: {
         type: Sequelize.STRING,
         /*this will be need to be a city*/
-        allowNull: false
     },
 
-    user_pic: {
-        type: Sequelize.STRING /* THIS WILL NEED TO BE CHANGED TO THEIR PROF PIC AND PUT IN A PLACEHOLDER PIC IF THEY DONT HAVE ONE*/
-    },
     birthday: {
         type: Sequelize.DATE
     },
@@ -54,55 +54,25 @@ var User = db.define('user', {
         type: Sequelize.ENUM('male', 'female') /*SHOULD I ADD MORE CHOICES?*/
     },
     role: {
-        type: Sequelize.ENUM('admin', 'general', 'disabled'),
+        type: Sequelize.ENUM('admin', 'general', 'disabled'), //NEED TO MAKE THIS SO ITS NOT EDITABLE BY REGULAR PEOPLE
         defaultValue: 'general'
-    },
+    }
+}, {
+        getterMethods: {
+            userInfo: function(){
+                let userInfo = {
+                    first_name: this.first_name,
+                    last_name: this.last_name,
+                    gender: this.gender,
+                    current_city: this.current_city,
+                    birthday: this.birthday
+                }
+                return userInfo
+            }
+        }
+    }
 
-    
-
-
-    //     // }, {
-    //     //     hooks: {
-    //     //         beforeValidate: function(page) {
-    //     //             if (page.title) {
-    //     //                 page.urlTitle = page.title.replace(/\s+/g, '_').replace(/\W/g, '');
-    //     //             }
-    //     //         }
-    //     //     },
-    //     //     getterMethods: {
-    //     //         route: function() {
-    //     //             return '/wiki/' + this.urlTitle;
-    //     //         },
-    //     //         renderedContent: function() {
-    //     //             return marked(this.content);
-    //     //         }
-    //     //     },
-    //     //     classMethods: {
-    //     //         findByTag: function(tag) {
-    //     //             return Page.findAll({
-    //     //                 where: {
-    //     //                     tags: {
-    //     //                         $overlap: [tag]
-    //     //                     }
-    //     //                 }
-    //     //             });
-    //     //         }
-    //     //     },
-    //     //     instanceMethods: {
-    //     //         findSimilar: function() {
-    //     //             return Page.findAll({
-    //     //                 where: {
-    //     //                     tags: {
-    //     //                         $overlap: this.tags
-    //     //                     },
-    //     //                     id: {
-    //     //                         $ne: this.id
-    //     //                     }
-    //     //                 }
-    //     //             });
-    //     //         }
-    //     //     }
-});
+);
 
 
 
