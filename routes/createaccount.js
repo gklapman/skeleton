@@ -10,8 +10,8 @@ var fs = require('fs');
 
 // /api/createaccount
 router.post('/', (req, res, next) => {
-    console.log('inside of router post with this body ', req.body)
-
+    console.log('this is the info', req.body.createaccountInfo)
+     const {first_name, last_name, password, birthday, gender, email} = req.body.createaccountInfo
     //WILL WANT TO CHECK IF EMAIL ALREADY EXISTS
     return User.findOne({
             where: {
@@ -25,13 +25,13 @@ router.post('/', (req, res, next) => {
             } else {
                 return User.create({
 
-                    email: req.body.email,
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
-                    // password: req.body.password,
-                    birthday: req.body.birthday,
-                    gender: req.body.gender,
-                    current_city: req.body.current_city,
+                    email: email,
+                    first_name: first_name,
+                    last_name: last_name,
+                    password: password,
+                    birthday: birthday,
+                    gender: gender,
+                    
                     
 
                 })
@@ -42,9 +42,10 @@ router.post('/', (req, res, next) => {
 
 
     .then(user => {
-            res.json(user)
+            req.session.user = user.userInfo
+            res.json(user.userInfo)
     })
-    .catch(next)
+    .catch(err => console.error(err))
 })
 
 

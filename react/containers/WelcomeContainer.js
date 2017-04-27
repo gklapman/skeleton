@@ -13,7 +13,7 @@ class WelcomeContainer extends React.Component {
 		console.log('inside of welcome container')
 		return (
 			<div className="welcome-container"> 
-			<p> rendering the Welcome Container</p>
+			<h1>Welcome to the Unnamed Travel Project</h1>
 			<LoginContainer /> 
 			<CreateAccountContainer />
 			</div>

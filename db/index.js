@@ -23,7 +23,7 @@ User.belongsToMany(User, {
 	through: {
 		model: Friend, 
 	},
-	foreignKey: 'user_1Id'
+	foreignKey: 'user1Id'
 })
 
 // User.belongsToMany(User, {
@@ -41,9 +41,13 @@ Location.belongsToMany(Friend, {
     {model: LocationFriendship}   
 })
 
-Accomadation.belongsTo(Location, {onDelete: 'cascade', hooks: true})
-Activity.belongsTo(Location, {onDelete: 'cascade', hooks: true})
-Restaurant.belongsTo(Location, {onDelete: 'cascade', hooks: true})
+// Accomadation.belongsTo(Location, {onDelete: 'cascade', hooks: true})
+// Activity.belongsTo(Location, {onDelete: 'cascade', hooks: true})
+// Restaurant.belongsTo(Location, {onDelete: 'cascade', hooks: true})
+
+Location.hasMany(Accomadation, {onDelete: 'cascade', hooks: true})
+Location.hasMany(Activity, {onDelete: 'cascade', hooks: true})
+Location.hasMany(Restaurant, {onDelete: 'cascade', hooks: true})
 
 //FIRST TABLE HAS THE MAGIC KEY
 

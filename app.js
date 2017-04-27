@@ -6,11 +6,15 @@ var {   db, User, Location, ProfilePhoto, LocationPhoto, Activity, Restaurant, A
 var Sequelize = require('sequelize');
 var Promise = require('bluebird');
 var path = require('path')
+var session = require('express-session');
+var volleyball = require('volleyball');
 
 var app = express();
 
 // --------------------------- MIDDLEWARE ----------------------------- //
 app.use(morgan('dev'));
+
+// app.use(volleyball);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -19,6 +23,20 @@ app.use(bodyParser.raw());
 app.use(express.static(__dirname + '/node_modules'));
 app.use(express.static(__dirname + '/public'));
 
+app.use(session({
+  // this mandatory configuration ensures that session IDs are not predictable ***
+  secret: 'supersecretcode', // or whatever you like
+  // these options are recommended and reduce session concurrency issues
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(function (req, res, next) {
+  console.log('session', req.session);
+  next();
+});
+
+
 // ---------------------------- ROUTERS -------------------------------//
 
 var travelpageRouter = require('./routes/travelpage');
@@ -26,12 +44,14 @@ var travelfeedRouter = require('./routes/travelfeed');
 var locationRouter = require('./routes/location')
 var createaccountRouter = require('./routes/createaccount')
 var loginRouter = require('./routes/login')
+var meRouter = require('./routes/me')
 
 app.use('/api/travelpage', travelpageRouter);
 app.use('/api/travelfeed', travelfeedRouter);
 app.use('/api/location', locationRouter);
 app.use('/api/createaccount', createaccountRouter);
 app.use('/api/login', loginRouter);
+app.use('/api/me', meRouter);
 
 //---------------------- STATIC FILE ERROR CATCHER----------------------//
 

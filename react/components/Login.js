@@ -1,8 +1,7 @@
-import React from 'react';
+ import React from 'react';
 
 const Login = (props) => (
 	<div className="login">
-	{console.log('props for Login', props)}
 		<form onSubmit={props.handleSubmit}>
 			<div className="form-group">
 				<label>Email</label>
@@ -17,8 +16,8 @@ const Login = (props) => (
 				<label>Password</label>
 				<input 
 					onChange={props.passwordChange}
-					name="email"
-				type={"text"/*this will be password*/}
+					name="passowrd"
+					type="password"
 					className="form-control"
 				/>
 			</div>

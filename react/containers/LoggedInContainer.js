@@ -9,7 +9,6 @@ class LoggedInContainer extends React.Component{
 		
 	}
 	render(){
-		console.log('the children are...', this.props)
 		return (
 			<div>
 			<NavBarContainer />

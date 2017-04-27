@@ -4,7 +4,7 @@ var {   db, User, Location, ProfilePhoto, LocationPhoto, Activity, Restaurant, A
 
 var data = {
     users: [
-        { email: 'gabiklapman@gmail.com', password: "password1", first_name: "Gabi", last_name: "Klapman", current_city: "Chicago", user_pic: "this will be a pic", gender: "female" },
+        { email: 'gabiklapman@gmail.com', password: "1", first_name: "Gabi", last_name: "Klapman", current_city: "Chicago", user_pic: "this will be a pic", gender: "female" },
         { email: 'sethklapman@gmail.com', password: "password2", first_name: "Seth", last_name: "Klapman", current_city: "Ann Arbor", user_pic: "this will be a pic", gender: "male" },
         {  email: 'kylklapman@gmail.com', password: "password3", first_name: "Kyle", last_name: "Klapman", current_city: "Naples", user_pic: "this will be a pic", gender: "male" },
         {  email: 'scottklapman@gmail.com', password: "password4", first_name: "Scott", last_name: "Klapman", current_city: "Oak Park", user_pic: "this will be a pic", gender: "male" },

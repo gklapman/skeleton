@@ -48,8 +48,8 @@ router.get('/:userId', function(req, res, next) {
                 where: {
                     status: 'approved',
                     $or: [
-                        {user_2Id: req.params.userId},
-                        {user_1Id: req.params.userId},      
+                        {user2Id: req.params.userId},
+                        {user1Id: req.params.userId},      
                     ]
                 }, 
                 // include: [{model: User, as: 'user2'}, {model: User, as: 'user1'}]

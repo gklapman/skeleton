@@ -8,17 +8,44 @@ import TravelfeedContainer from './containers/TravelfeedContainer'
 import ProfileContainer from './containers/ProfileContainer'
 import LocationContainer from './containers/LocationContainer'
 
-const Routes = () => (
+import {getTravelpageInfoThunkCreator} from './redux/travelpage'
+import {getCurrentUserInfoThunkCreator} from './redux/currentUser'
+import {getLocationInfoThunkCreator} from './redux/location'
+
+const Routes = ({fetchProfileInfo, fetchCurrentUserInfo, fetchLocationInfo}) => (
 	<Router history={browserHistory}>
-		<Route path="/" component={Main}>
-			<IndexRoute component={WelcomeContainer} />
+		<Route path="/" component={Main} onEnter={fetchCurrentUserInfo}>
+			<Route path="welcome" component={WelcomeContainer} />
 			<Route path="loggedIn/" component={LoggedInContainer}>
 				<Route path="travelfeed" component={TravelfeedContainer} />
-				<Route path="profile/:userId" component={ProfileContainer} />
-				<Route path="location/:locationId" component={LocationContainer} />
+				<Route path="profile/:userId" component={ProfileContainer} onEnter={fetchProfileInfo} />
+				<Route path="location/:locationId" component={LocationContainer} onEnter={fetchLocationInfo}/>
 			</Route>
 		</Route>
 	</Router>
 );
 
-export default Routes;
+const mapStateToProps = null;
+
+const mapDispatchToProps = dispatch => ({
+	fetchProfileInfo: (nextRouterState) => {
+		
+		const userId = nextRouterState.params.userId
+		dispatch(getTravelpageInfoThunkCreator(userId))
+	},
+	fetchCurrentUserInfo: () => {
+		dispatch(getCurrentUserInfoThunkCreator())
+		let currentLocation = browserHistory.getCurrentLocation()
+		if (currentLocation.pathname === "/" || currentLocation.pathname === '/loggedIn/'){
+			browserHistory.replace('/loggedIn/travelfeed')
+		}
+	},
+	fetchLocationInfo: (nextRouterState) => {
+		console.log('inside of fetchLocationInfo')
+		const locationId = nextRouterState.params.locationId
+		dispatch(getLocationInfoThunkCreator(locationId))
+	}
+
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Routes)

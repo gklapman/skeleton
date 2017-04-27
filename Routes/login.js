@@ -4,7 +4,6 @@ var {   db, User, Location, ProfilePhoto, LocationPhoto, Activity, Restaurant, A
 var Promise = require('bluebird');
 
 router.post('/', function (req, res, next){
-	console.log('inside of get request', req.body)
 	return User.findOne({
 		where: {
 			email: req.body.email,
@@ -13,6 +12,7 @@ router.post('/', function (req, res, next){
 	})
 	.then(user => {
 		if (user){
+			req.session.user = user.userInfo
 			res.json(user.userInfo)
 		} else {
 			res.send('user not found')

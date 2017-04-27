@@ -8,22 +8,34 @@ import Accomadations from '../components/Accomadations'
 
 
 class LocationContainer extends React.Component{
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		
 	}
 	render(){
+		console.log('the props inside of location container is ', this.props)
 		return (
 			<div>
-			<p> inside of LocationContainer </p>
-			<LocationHeading />
+			<LocationHeading locationInfo = {this.props.locationInfo.location} userInfo = {this.props.locationInfo.user}/>
 			<LocationPhotos />
-			<Restaurants />
-			<Activities />
-			<Accomadations />
+			<Restaurants locationInfo = {this.props.locationInfo.location} />
+			<Activities locationInfo = {this.props.locationInfo.location}/>
+			<Accomadations locationInfo = {this.props.locationInfo.location}/>
 			</div>
 		);
 	}
 }
 
-export default LocationContainer;
+const mapStateToProps = (state, ownProps) => {
+	return {
+		currentUser: state.currentUser,
+		locationInfo: state.locationInfo
+	}
+}
+
+const mapDispatchToProps = dispatch => {
+	return {
+		//will probably need some functions to dispatch edits to location if current user
+	}
+}
+export default connect(mapStateToProps, mapDispatchToProps)(LocationContainer)

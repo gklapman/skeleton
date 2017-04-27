@@ -5,6 +5,7 @@ var Promise = require('bluebird');
 
 // /api/location
 router.get('/:locationId', function(req, res, next) {
+	console.log('inside of server side location request ', req.params.locationId)
 	var locationInfo = {};
 		Location.findOne({
             where: {
