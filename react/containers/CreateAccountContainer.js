@@ -20,7 +20,6 @@ class CreateAccountContainer extends React.Component {
 	}
 
 	handleSubmit(data){
-		console.log('this is the data', data)
 		// event.preventDefault();
 		// const email = this.state.formEmail;
 		// const password = this.state.formPassword;

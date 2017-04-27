@@ -1,7 +1,6 @@
 import React from 'react';
 
 const LocationHeading = (props) => {
-	console.log('the props inside location heading are ', props)
 	let city, overallReview;
 	let startingDate = "";
 	let endingDate = "";

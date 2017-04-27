@@ -50,5 +50,37 @@ export const getLocationInfoThunkCreator = function (locationId){
 	}
 }
 
+export const postImgThunkCreator = function(file, locationId){
+	return axios.get(`/api/location/sign?filename=${file.name}&filetype=${file.type}`)
+	.then(res => {
+		console.log('this is the res', res)
+		const signedUrl = res.data.signedRequest
+		const options = {
+			headers: {
+				'Content-Type': file.type
+			}
+		}
+		  axios.put(signedUrl, file, options)
+		  return axios.post('/api/location/addPhoto', {locationId, Url: res.data.url})
+		
+	})
+	.then(locationPhoto => {
+		return locationPhoto
+	})
+
+	
+	.catch(err => console.log(err))
+	}	
+
+
+// export const insertPhotoThunkCreator = function(signedUrl, imgFile, options){
+// 	return axios.put('api/location/addphoto', {signedUrl, imgFile, options})
+// 	.then(res => {
+// 		console.log(res)
+// 	})
+// }
+
+		
+
 
 

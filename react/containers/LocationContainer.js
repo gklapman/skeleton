@@ -13,7 +13,6 @@ class LocationContainer extends React.Component{
 		
 	}
 	render(){
-		console.log('the props inside of location container is ', this.props)
 		return (
 			<div>
 			<LocationHeading locationInfo = {this.props.locationInfo.location} userInfo = {this.props.locationInfo.user}/>

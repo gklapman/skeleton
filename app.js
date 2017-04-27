@@ -8,8 +8,10 @@ var Promise = require('bluebird');
 var path = require('path')
 var session = require('express-session');
 var volleyball = require('volleyball');
+var {resolve} = require('path')
 
 var app = express();
+// var secretFile = require('../index')
 
 // --------------------------- MIDDLEWARE ----------------------------- //
 app.use(morgan('dev'));
@@ -31,20 +33,20 @@ app.use(session({
   saveUninitialized: false
 }));
 
-app.use(function (req, res, next) {
-  console.log('session', req.session);
-  next();
-});
+// app.use(function (req, res, next) {
+//   console.log('session', req.session);
+//   next();
+// });
 
 
 // ---------------------------- ROUTERS -------------------------------//
 
-var travelpageRouter = require('./routes/travelpage');
-var travelfeedRouter = require('./routes/travelfeed');
-var locationRouter = require('./routes/location')
-var createaccountRouter = require('./routes/createaccount')
-var loginRouter = require('./routes/login')
-var meRouter = require('./routes/me')
+var travelpageRouter = require('./server/travelpage');
+var travelfeedRouter = require('./server/travelfeed');
+var locationRouter = require('./server/location')
+var createaccountRouter = require('./server/createaccount')
+var loginRouter = require('./server/login')
+var meRouter = require('./server/me')
 
 app.use('/api/travelpage', travelpageRouter);
 app.use('/api/travelfeed', travelfeedRouter);
@@ -86,5 +88,7 @@ app.listen(3001, function() {
 });
 
 
+module.exports = {
+  app
+}
 
-module.exports = app;

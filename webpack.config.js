@@ -11,6 +11,9 @@ module.exports = {
     path: __dirname + '/public',
     filename: 'bundle.js'
   },
+  // node : {
+  //   fs: 'empty'
+  // },
   context: __dirname,
   devtool: 'source-map',
   module: {

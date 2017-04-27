@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
-var fs = require("fs");
 var Promise = require('bluebird');
 
 

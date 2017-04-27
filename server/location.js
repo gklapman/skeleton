@@ -2,8 +2,36 @@ var express = require('express');
 var router = express.Router();
 var {   db, User, Location, ProfilePhoto, LocationPhoto, Activity, Restaurant, Accomadation, LocationFriendship, Friend } = require('../db/index');
 var Promise = require('bluebird');
+var s3Utils = require('./s3Utils')
+var aws = require('aws-sdk')
+var {secretsFile} = require('../index')
+
+
+aws.config.update({
+  signatureVersion: 'v4',
+  accessKeyId: secretsFile.AWSAccessKeyId,
+  secretAccessKey: secretsFile.AWSSecretKey,
+})
+
+
+const s3 = new aws.S3({}) //WHAT IS THIS DOING?
+
 
 // /api/location
+router.get('/sign', (req, res, next) => {
+	s3Utils.sign(req.query.filename, req.query.filetype, res)
+})
+
+router.post('/addphoto', (req, res, next) => {
+	return LocationPhoto.create({
+		filepath: req.body.Url, 
+		locationId: req.body.locationId
+	})
+	then(locationphoto => {
+		res.json(locationphoto)
+	})
+})
+
 router.get('/:locationId', function(req, res, next) {
 	console.log('inside of server side location request ', req.params.locationId)
 	var locationInfo = {};

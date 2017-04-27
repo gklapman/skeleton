@@ -53,7 +53,6 @@ export const loginUserThunkCreator = function (email, password){
 
 
 export const createUserThunkCreator = function (createaccountInfo){
-	console.log('inside of the thunk with this ', createaccountInfo)
 	return (dispatch, getState) => {
 		return axios.post('api/createaccount', {createaccountInfo})
 		.then(res => {
@@ -78,10 +77,10 @@ export const getCurrentUserInfoThunkCreator = () => dispatch => {
 	})
 	.then(userObj => {
 		dispatch(setUser(userObj))
-		if (!userObj.id){
-		const path = '/welcome'
-		browserHistory.replace(path)
-		} 
+		// if (!userObj.id){
+		// const path = '/welcome'
+		// browserHistory.replace(path)
+		// } 
 	})
 	.catch(err => console.error(err))
 	}

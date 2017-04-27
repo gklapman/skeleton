@@ -11,7 +11,6 @@ class NavbarContainer extends React.Component{
 		}
 	}
 	render(){
-		console.log('the props inside of navbar are ', this.props)
 		return (
 			<div>
 			<Navbar currentUser={this.props.currentUser} logout={this.props.logout}/>

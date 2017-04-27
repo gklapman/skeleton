@@ -1,5 +1,5 @@
 {
-  "name": "side_project",
+  "name": "travelapp",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.46.0",
     "axios": "^0.16.1",
     "babel": "^6.23.0",
     "babel-core": "^6.24.1",
@@ -47,10 +48,18 @@
     "volleyball": "^1.4.1"
   },
   "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.18.0",
+    "babel-eslint": "^7.2.2",
+    "babel-loader": "^6.2.7",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
     "chai": "^3.5.0",
     "chai-things": "^0.2.0",
     "mocha": "^3.2.0",
     "nodemon": "^1.10.0",
-    "webpack": "^2.3.3"
+    "webpack": "^2.3.3",
+    "webpack-livereload-plugin": "^0.10.0"
   }
 }
