@@ -1,5 +1,7 @@
 body {
-    padding: 50px;
+	padding: 20px;
+	margin-right: 20px;
+	margin-left: 20px;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -12,7 +14,101 @@ a {
 	bottom: 0;
 	margin-top: 20px;
 	width: 100%;
-	background-color: #f8f8f8;
+	background-color: #779999;
 	height: 60px;
 	clear: both;
 }
+
+
+.login, .navigation{
+	display: flex;
+	justify-content: space-between;
+	/*margin-bottom: 50px;
+*/	background-color: #779999;
+	padding: 20px;
+}
+
+.login-item, .navbar-item {
+	display: inline-block;
+}
+
+.login-btn {
+	width: 75px;
+}
+
+.logo {
+	margin-top: 9px
+}
+
+.createaccount {
+	display: flex;
+	flex-direction: row-reverse;
+	margin: 3%;
+	z-index: 100;
+}
+
+.createaccount-item {
+	width: 50%;
+}
+
+.text {
+	color: white;
+}
+
+.create-header {
+	text-align: center;
+
+}
+
+.form-control {
+	margin: 5px;
+}
+
+.logout-button {
+	margin-top: 8px;
+}
+
+#earth {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /*margin: 3em auto;*/
+  background: url('earthmap2.png') 0 0;
+ /* border-radius: 50%;*/
+  background-size: 630px;
+  animation: rotate 15s linear infinite;
+  transition: transform 200ms linear;
+  transform-style: preserve-3d;
+  box-shadow: inset 20px 0 80px 6px rgba(0, 0, 0, 1);
+  color: #000;
+  opacity: 0.5;
+}
+
+#earth:after {
+  content: "";
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  /*border-radius: 100%;*/
+  box-shadow: -80px 15px 80px 10px rgba(0,0,0,.9) inset;
+}
+
+#earth:before {
+  content: "";
+  position: absolute;
+  /*border-radius: 50%;*/
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.2;
+  background: radial-gradient(circle at 100px 100px, #fff, #000);
+}
+
+@keyframes rotate {
+  0% {background-position: 0 0;}
+  100% {background-position: 630px 0;}
+}
+

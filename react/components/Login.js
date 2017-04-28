@@ -2,8 +2,9 @@
 
 const Login = (props) => (
 	<div className="login">
+		<h1 className="glyphicon glyphicon-plane login-item logo">rvlPage</h1>
 		<form onSubmit={props.handleSubmit}>
-			<div className="form-group">
+			<div className="login-item">
 				<label>Email</label>
 				<input 
 					onChange={props.emailChange}
@@ -12,7 +13,7 @@ const Login = (props) => (
 					className="form-control"
 				/>
 			</div>
-			<div className="form-group">
+			<div className="login-item">
 				<label>Password</label>
 				<input 
 					onChange={props.passwordChange}
@@ -21,7 +22,7 @@ const Login = (props) => (
 					className="form-control"
 				/>
 			</div>
-			<button type="submit" className="btn btn-block btn-primary">Login!</button>
+			<button type="submit" className="btn btn-block btn-primary login-item login-btn">Login!</button>
 		</form>
 	</div>
 )

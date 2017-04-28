@@ -10,10 +10,8 @@ class WelcomeContainer extends React.Component {
 		
 	}
 	render(){
-		console.log('inside of welcome container')
 		return (
 			<div className="welcome-container"> 
-			<h1>Welcome to the Unnamed Travel Project</h1>
 			<LoginContainer /> 
 			<CreateAccountContainer />
 			</div>

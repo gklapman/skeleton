@@ -11,6 +11,7 @@ import LocationContainer from './containers/LocationContainer'
 import {getTravelpageInfoThunkCreator} from './redux/travelpage'
 import {getCurrentUserInfoThunkCreator} from './redux/currentUser'
 import {getLocationInfoThunkCreator} from './redux/location'
+import {ProfileMap} from './components/ProfileMap'
 
 const Routes = ({fetchProfileInfo, fetchCurrentUserInfo, fetchLocationInfo}) => (
 	<Router history={browserHistory}>

@@ -5,6 +5,7 @@ import LocationPhotos from '../components/LocationPhotos'
 import Restaurants from '../components/Restaurants'
 import Activities from '../components/Activities'
 import Accomadations from '../components/Accomadations'
+import {MapContainer} from '../containers/MapContainer'
 
 
 class LocationContainer extends React.Component{
@@ -14,12 +15,13 @@ class LocationContainer extends React.Component{
 	}
 	render(){
 		return (
-			<div>
+			<div className="location">
 			<LocationHeading locationInfo = {this.props.locationInfo.location} userInfo = {this.props.locationInfo.user}/>
 			<LocationPhotos />
 			<Restaurants locationInfo = {this.props.locationInfo.location} />
 			<Activities locationInfo = {this.props.locationInfo.location}/>
 			<Accomadations locationInfo = {this.props.locationInfo.location}/>
+			<MapContainer/>
 			</div>
 		);
 	}

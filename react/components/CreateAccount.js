@@ -3,45 +3,52 @@ import {Field, reduxForm} from 'redux-form'
 
 const CreateAccount = ({handleSubmit}) => {
 
-	return (
-	 <form onSubmit={handleSubmit}>
+    {/*<div id="earth">*/}
+  return (
+    <div className="createaccount">
+    <div className="createaccount-item">
+    <h2 className="create-header">Create Your Own TrvlPage</h2>
+	 <form className="form-group" onSubmit={handleSubmit}>
       <div>
         <label>First Name</label>
-        <div>
-          <Field name="first_name" component="input" type="text" placeholder="First Name"/>
+        <div className="">
+          <Field className='form-control white' name="first_name" component="input" type="text" placeholder="First Name"/>
         </div>
       </div>
       <div>
         <label>Last Name</label>
         <div>
-          <Field name="last_name" component="input" type="text" placeholder="Last Name"/>
+          <Field className='form-control' name="last_name" component="input" type="text" placeholder="Last Name"/>
         </div>
       </div>
       <div>
         <label>Email</label>
         <div>
-          <Field name="email" component="input" type="email" placeholder="Email"/>
+          <Field className='form-control' name="email" component="input" type="email" placeholder="Email"/>
         </div>
       </div>
        <div>
         <label>Password</label>
         <div>
-          <Field name="password" component="input" type="text" placeholder="Password"/>
+          <Field className='form-control' name="password" component="input" type="text" placeholder="Password"/>
         </div>
       </div>
-      <div>
+      {/*<div>
         <label>Gender (optional)</label>
         <div>
           <label><Field name="gender" component="input" type="radio" value="male"/> Male</label>
           <label><Field name="gender" component="input" type="radio" value="female"/> Female</label>
         </div>
-      </div>
+      </div>*/}
       <div>
-        <button type="submit">Submit</button>
+        <button className='btn btn-primary' type="submit">Submit</button>
       </div>
     </form>
+    </div>
+    </div>
 
-	)
+  )
+    {/*</div>*/}
 
 }
 	

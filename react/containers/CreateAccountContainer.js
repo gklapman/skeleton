@@ -44,7 +44,6 @@ class CreateAccountContainer extends React.Component {
 		})
 	}
 	render(){
-		console.log('inside of create account container')
 		return (
 			<div className="create-account-container"> 
 			<CreateAccount onSubmit={this.handleSubmit}/> 

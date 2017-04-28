@@ -8,30 +8,27 @@ export default function Navbar (props){
 	const logout = props.logout
 	console.log('logout ', logout)
 	return (
-		<nav className="navbar navbar-default">
-			<div className="container">
-				<form className="navbar-form navbar-left" role="search">
-					<div>
+		<nav className="navigation navbar-default">
+				<form className="navbar-form " role="search">
+					<div className='navbar-item'>
 						<input type="text" className="form-control" placeholder="Search"/>
 					</div>
-					<button type="submit" className="btn btn-default">Submit</button>
+					<button className='navbar-item' type="submit" className="btn btn-default">Submit</button>
 				</form>
-				<ul className="nav navbar-nav navbar-right">
+				<ul className="nav navbar-nav navbar-item">
 					<li>
-						<Link to='/loggedIn/travelfeed' activeClassName="active">Home</Link>
+						<Link to='/loggedIn/travelfeed' activeClassName="active"> <span className="text" >Home</span></Link>
 					</li>
 					<li>
-						<Link to={`/loggedIn/profile/${userId}`}>LINK TO PROFILE</Link>
-						{/*<Link to={`/loggedIn/profile/${userId}`} activeClassName="active">My Profile</Link>*/}
+						<Link to={`/loggedIn/profile/${userId}`}> <span className="text">My TrvlPage</span></Link>
 					</li>
 					<li>
-						<Link to='/loggedIn/profile/1'>Notifications </Link> {/*THIS WILL NEED TO GO TO NOTIFICATIONS*/}
+						<Link to='/loggedIn/profile/1'> <span className="text">Notifications</span></Link> {/*THIS WILL NEED TO GO TO NOTIFICATIONS*/}
 					</li>
 					<li>
-						<button className="btn btn-default" onClick={logout}>Logout</button>{/*THIS WILL NEED TO GO TO NOTIFICATIONS*/}
+						<button className="btn btn-default navbar-item logout-button" onClick={logout}>Logout</button>
 					</li>
 				</ul>
-			</div>
 		</nav>
 	)
 }

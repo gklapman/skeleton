@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import UserInfo from '../components/UserInfo';
 import UserMap from '../components/Map'
+import {MapContainer} from './MapContainer'
 
 
 
@@ -11,7 +12,6 @@ class ProfileContainer extends React.Component{
 		
 	}
 	render(){
-		console.log('the props are ', this.props)
 		let isUser;
 		if (this.props.currentUser.id === Number(this.props.params.userId)){
 			isUser = <div> 
@@ -22,6 +22,7 @@ class ProfileContainer extends React.Component{
 		return (
 			<div>
 			{isUser}
+			<MapContainer />
 			<UserInfo travelpageInfo = {this.props.travelpageInfo}/>
 			<UserMap locations = {this.props.travelpageInfo.locations} />
 			</div>
