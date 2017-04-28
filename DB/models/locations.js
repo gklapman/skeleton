@@ -18,6 +18,12 @@ var Location = db.define('location', {
     ending_date: {
         type: Sequelize.DATE,
     },
+    lat: {
+        type: Sequelize.DECIMAL
+    }, 
+    lng: {
+        type: Sequelize.DECIMAL
+    }
 
 });
 

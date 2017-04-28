@@ -15,6 +15,7 @@ export default function Navbar (props){
 					</div>
 					<button className='navbar-item' type="submit" className="btn btn-default">Submit</button>
 				</form>
+				<h1 className="glyphicon glyphicon-plane navbar-item logo">rvlPage</h1>
 				<ul className="nav navbar-nav navbar-item">
 					<li>
 						<Link to='/loggedIn/travelfeed' activeClassName="active"> <span className="text" >Home</span></Link>

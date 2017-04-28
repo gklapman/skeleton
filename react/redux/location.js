@@ -35,6 +35,7 @@ export default function reducer (locationInfo = {}, action) {
 /* ------------       DISPATCHERS     ------------------ */
 
 export const getLocationInfoThunkCreator = function (locationId){
+	console.log('invoking with ', locationId)
 	return (dispatch, getState) => {
 	return axios.get(`/api/location/${locationId}`)
 	.then(res => {

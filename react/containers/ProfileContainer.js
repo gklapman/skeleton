@@ -2,14 +2,25 @@ import React from 'react';
 import { connect } from 'react-redux';
 import UserInfo from '../components/UserInfo';
 import UserMap from '../components/Map'
-import {MapContainer} from './MapContainer'
+import ProfileMap from '../components/ProfileMap'
+import {getLocationInfoThunkCreator} from '../redux/location'
+import {browserHistory} from 'react-router'
 
 
 
 class ProfileContainer extends React.Component{
 	constructor(props) {
 		super(props);
+		this.handleClick = this.handleClick.bind(this)
 		
+	}
+
+	handleClick(event){
+		event.preventDefault()
+		let locationId = event.target.value
+		this.props.goToLocation(locationId)
+		browserHistory.push(`/loggedIn/location/${locationId}`)
+
 	}
 	render(){
 		let isUser;
@@ -22,9 +33,10 @@ class ProfileContainer extends React.Component{
 		return (
 			<div>
 			{isUser}
-			<MapContainer />
 			<UserInfo travelpageInfo = {this.props.travelpageInfo}/>
-			<UserMap locations = {this.props.travelpageInfo.locations} />
+			<div style={{width: '100%', height: '400px'}}>
+				<ProfileMap locations={this.props.travelpageInfo.locations} handleClick={this.handleClick}/>
+			</div>
 			</div>
 		)
 	}
@@ -37,9 +49,14 @@ const mapStateToProps = (state, ownProps) => {
 	}
 }
 
-const mapDispatchToProps = null;
-//THIS WILL HAVE DISPATCHES FOR WHEN THEY CLICK ON PROFILE PIC OR CLICK ON LOCATION ETC.
-
+const mapDispatchToProps = (dispatch) => {
+	return {
+		goToLocation(locationId){
+			return dispatch(getLocationInfoThunkCreator(locationId))
+		}
+		//THIS WILL BE FOR A THUNK TO MAKE REQUEST TO CHECK USER IN DB AND SET CURRENT USER ON STORE STATE
+	}
+}
 
 
 

@@ -1,36 +1,31 @@
-
+ 
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
+import {Pin} from './Pins'
 
-const AnyReactComponent = ({ text }) => (
-  <div style={{
-    position: 'relative', color: 'white', background: 'red',
-    height: 40, width: 60, top: -20, left: -30,    
-  }}>
-    {text}
-  </div>
-);
 
-class SimpleMap extends React.Component {
-  // static defaultProps = {
-  //   center: {lat: 59.95, lng: 30.33},
-  //   zoom: 11
-  // };
 
-  render() {
+const ProfileMap = ({locations, handleClick}) => {
+  
+    
     return (
        <GoogleMapReact
-        defaultCenter={{lat: 59.95, lng: 30.33}}
-        defaultZoom={5}
+        defaultCenter={{lat: 32.91, lng: -39.81}}
+        defaultZoom={1}
       >
-        <AnyReactComponent 
-          lat={59.955413} 
-          lng={30.337844} 
-          text={'Kreyser Avrora'} 
-        />
+      {locations && locations.map(location => {
+        return (<Pin 
+          key={location.id}
+          lat={location.lat} 
+          lng={location.lng} 
+          value={location.id}
+          handleClick = {handleClick}
+        />)
+      })}
+        
       </GoogleMapReact>
     );
   }
-}
 
-export default SimpleMap
+
+export default ProfileMap

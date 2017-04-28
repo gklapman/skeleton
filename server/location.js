@@ -39,13 +39,13 @@ router.get('/:locationId', function(req, res, next) {
             where: {
                 id: req.params.locationId
             }, 
-            include: [Activity, Accomadation, Restaurant]
+            include: [Activity, Accomadation, Restaurant, LocationPhoto]
 
         })
         .then(location => {
             locationInfo.location = location;
             let userId = location.userId;
-            console.log('userId', userId)
+      
 
 
          return User.findOne({

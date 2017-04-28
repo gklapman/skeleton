@@ -86,8 +86,9 @@ router.post('/addlocation', function(req, res, next){ //req.body should include 
             starting_date: req.body.starting_date,
             ending_date: req.body.ending_date,
             overall_review: req.body.overall_review,
-            userId: req.body.userId //should I put this on the params... make the route redirect to include userId
-        
+            userId: req.body.userId, //should I put this on the params... make the route redirect to include userId
+            lat: req.body.lat, 
+            lng: req.body.lng
     })
     .then(location => {
         res.json(location)

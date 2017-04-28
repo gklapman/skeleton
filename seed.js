@@ -13,10 +13,10 @@ var data = {
 
     ],
     locations: [
-        {  city: "Madrid", overall_review: "It was awesome", photos: ["these will be photos"], reviews: ["hotel review, blah blah blah"], userId: 1 },
-        {  city: "Berlin", overall_review: "It was great", photos: ["these will be photos"], reviews: ["hotel review, blah blah blah"], userId: 3 },
-        {  city: "Dubai", overall_review: "It was incredible", photos: ["these will be photos"], reviews: ["hotel review, blah blah blah"], userId: 2 },
-        {  city: "Bali", overall_review: "It was amazing", photos: ["these will be photos"], reviews: ["hotel review, blah blah blah"], userId: 1 },
+        {  city: "Sevilla", overall_review: "It was awesome", photos: ["these will be photos"], reviews: ["hotel review, blah blah blah"], userId: 1, lat: 37.3891, lng: -5.9845 },
+        {  city: "New York City", overall_review: "It was great", photos: ["these will be photos"], reviews: ["hotel review, blah blah blah"], userId: 1, lat: 40.7128, lng: -74.0059 },
+        {  city: "Dubai", overall_review: "It was incredible", photos: ["these will be photos"], reviews: ["hotel review, blah blah blah"], userId: 1, lat: 25.2048, lng: 55.2708 },
+        {  city: "Bali", overall_review: "It was amazing", photos: ["these will be photos"], reviews: ["hotel review, blah blah blah"], userId: 1, lat: -8.3405, lng: 115.0920 },
 
     ],
     // friends: [
