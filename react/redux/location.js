@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import {browserHistory} from 'react-router'
 import store from '../store'
-
+import {getCurrentUserThunkCreator} from './currentUser'
 
 /* -----------------    ACTIONS     ------------------ */
 
@@ -42,7 +42,17 @@ export const getLocationInfoThunkCreator = function (locationId){
 		return res.data
 	})
 	.then(locationObj => {
+		let photosArr = []
+		if (locationObj.location){
+			let currentphotos = locationObj.location.locationphotos
+			for (let i = currentphotos.length-1; i >= 0; i--){
+				photosArr.push(currentphotos[i].filepath)
+			}
+		}
+		locationObj.photosArr = photosArr
 		dispatch(setLocation(locationObj))
+		
+
 		
 	})
 
@@ -73,15 +83,6 @@ export const postImgThunkCreator = function(file, locationId){
 	.catch(err => console.log(err))
 	}	
 
-
-// export const insertPhotoThunkCreator = function(signedUrl, imgFile, options){
-// 	return axios.put('api/location/addphoto', {signedUrl, imgFile, options})
-// 	.then(res => {
-// 		console.log(res)
-// 	})
-// }
-
-		
 
 
 

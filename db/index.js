@@ -9,6 +9,8 @@ var LocationPhoto = require('./models/locationphotos')
 var Restaurant = require('./models/restaurants')
 var LocationFriendship = require('./models/locationfriendships')
 var Sequelize = require('sequelize')
+var Notification = require('./models/notifications')
+var TravelFeed = require('./models/travelfeed')
 
 
 User.hasMany(Location)
@@ -51,7 +53,23 @@ Location.hasMany(Restaurant, {onDelete: 'cascade', hooks: true})
 
 //FIRST TABLE HAS THE MAGIC KEY
 
+User.belongsToMany(User, {
+    as: 'user2',
+    through: {
+        model: Notification, 
+    },
+    foreignKey: 'user1Id'
+})
 
+
+
+User.belongsToMany(User, {
+    as: 'user2',
+    through: {
+        model: TravelFeed, 
+    },
+    foreignKey: 'user1Id'
+})
 
 
 
@@ -65,5 +83,7 @@ module.exports = {
     Restaurant, 
     Accomadation, 
     LocationFriendship, 
-    Friend
+    Friend,
+    Notification, 
+    TravelFeed
 }

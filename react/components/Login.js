@@ -2,7 +2,10 @@
 
 const Login = (props) => (
 	<div className="login">
-		<h1 className="glyphicon glyphicon-plane login-item logo">rvlPage</h1>
+		<div className="logo">
+		<h1 className="glyphicon glyphicon-plane icon"></h1>
+		<h1 className="navbar-item logo">rvlPage</h1>
+		</div>
 		<form onSubmit={props.handleSubmit}>
 			<div className="login-item">
 				<label>Email</label>

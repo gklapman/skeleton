@@ -1,5 +1,5 @@
 var Promise = require('bluebird');
-var {   db, User, Location, ProfilePhoto, LocationPhoto, Activity, Restaurant, Accomadation, LocationFriendship, Friend } = require('./db/index');
+var {   db, User, Location, ProfilePhoto, LocationPhoto, Activity, Restaurant, Accomadation, LocationFriendship, Friend, Notification, TravelFeed } = require('./db/index');
 
 
 var data = {

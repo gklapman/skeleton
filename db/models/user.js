@@ -56,6 +56,12 @@ var User = db.define('user', {
     role: {
         type: Sequelize.ENUM('admin', 'general', 'disabled'), //NEED TO MAKE THIS SO ITS NOT EDITABLE BY REGULAR PEOPLE
         defaultValue: 'general'
+    },
+    lat: {
+        type: Sequelize.DECIMAL
+    },
+    lng: {
+        type: Sequelize.DECIMAL
     }
 }, {
         getterMethods: {

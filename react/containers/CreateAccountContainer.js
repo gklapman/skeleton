@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import React from 'react';
 import CreateAccount from '../components/CreateAccount'
@@ -45,7 +45,7 @@ class CreateAccountContainer extends React.Component {
 	}
 	render(){
 		return (
-			<div className="create-account-container"> 
+			<div className="create-account-container" id="earth"> 
 			<CreateAccount onSubmit={this.handleSubmit}/> 
 			
 			</div>

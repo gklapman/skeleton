@@ -51,4 +51,27 @@ export const getTravelpageInfoThunkCreator = function (userId){
 }
 
 
+export const postProfThunkCreator = function(file, userId){
+	return axios.get(`/api/location/sign?filename=${file.name}&filetype=${file.type}`)
+	.then(res => {
+		console.log('this is the res', res)
+		const signedUrl = res.data.signedRequest
+		const options = {
+			headers: {
+				'Content-Type': file.type
+			}
+		}
+		  axios.put(signedUrl, file, options)
+		  return axios.post('/api/travelpage/addPhoto', {userId, Url: res.data.url})
+		
+	})
+	.then(profilePhoto => {
+		dispatch(getTravelpageInfoThunkCreator(userId))
+		return profilePhoto
+	})
+
+	
+	.catch(err => console.log(err))
+	}	
+		
 

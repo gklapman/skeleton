@@ -5,32 +5,32 @@ const CreateAccount = ({handleSubmit}) => {
 
     {/*<div id="earth">*/}
   return (
-    <div className="createaccount">
+    <div className="createaccount" >
     <div className="createaccount-item">
-    <h2 className="create-header">Create Your Own TrvlPage</h2>
+    <h2 className="create-header">Create Your Own <span className="glyphicon glyphicon-plane"></span>rvlPage</h2>
 	 <form className="form-group" onSubmit={handleSubmit}>
       <div>
         <label>First Name</label>
         <div className="">
-          <Field className='form-control white' name="first_name" component="input" type="text" placeholder="First Name"/>
+          <Field className='form-control black' name="first_name" component="input" type="text" placeholder="First Name"/>
         </div>
       </div>
       <div>
         <label>Last Name</label>
         <div>
-          <Field className='form-control' name="last_name" component="input" type="text" placeholder="Last Name"/>
+          <Field className='form-control black'  name="last_name" component="input" type="text" placeholder="Last Name"/>
         </div>
       </div>
       <div>
         <label>Email</label>
         <div>
-          <Field className='form-control' name="email" component="input" type="email" placeholder="Email"/>
+          <Field className='form-control black' name="email" component="input" type="email" placeholder="Email"/>
         </div>
       </div>
        <div>
         <label>Password</label>
         <div>
-          <Field className='form-control' name="password" component="input" type="text" placeholder="Password"/>
+          <Field className='form-control black' name="password" component="input" type="text" placeholder="Password"/>
         </div>
       </div>
       {/*<div>

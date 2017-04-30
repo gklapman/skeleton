@@ -1,16 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var {   db, User, Location, ProfilePhoto, LocationPhoto, Activity, Restaurant, Accomadation, LocationFriendship, Friend } = require('../db/index');
+var {   db, User, Location, ProfilePhoto, LocationPhoto, Activity, Restaurant, Accomadation, LocationFriendship, Friend, Notification, TravelFeed } = require('../db/index');
 var Promise = require('bluebird');
 
-promisifiedWriteFile = function(filename, filecontents) {
-    return new Promise(function(resolve, reject) {
-        fs.writeFile(filename, filecontents, 'binary', function(err, str) { //most likely binary
-            if (err) reject(err);
-            else resolve(str);
-        });
-    });
-};
+
 
 // /api/travelpage/
 router.get('/:userId', function(req, res, next) {
@@ -64,6 +57,21 @@ router.get('/:userId', function(req, res, next) {
 
 });
 
+//add friend
+
+router.post('/:userId/addbuddy', function (req, res, next){
+    console.log('inside add buddy with ', req.body.buddyId)
+    return Friend.create({
+        user1Id: req.params.userId,
+        user2Id: req.body.buddyId,
+        status: 'pending'
+    })
+    .then(buddyrequest => {
+        
+    })
+    .catch(err => console.log(err))
+})
+
 router.get('/:userId/profilepics', function (req, res, next){
     ProfilePhoto.findAll({
         where: {
@@ -115,33 +123,17 @@ router.put('/:userId', function(req, res, next){
 })
 
 //ADD PROFILE PICTURE
-router.post('/:userId/uploadprofilepicture', function (req, res, next){
-    let userId = req.params.userId
-    console.log('inside correct post function')
 
-    console.log(req.body) //Buffer binary information
-
-    function makeid() {
-        var text = "";
-        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-        for (var i = 0; i < 10; i++)
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-        return text;
-    }
-
-    let idletters = makeid();
-
-    // filePromise = promisifiedWriteFile('./photos' + idletters + '.jpg', req.body.pic)
-    filePromise = promisifiedWriteFile('images.jpg', req.body.pic)
-
-    dbPromise = ProfilePhoto.create({
-        filepath: './photos' + idletters + '.jpg',
-        UserId: userId,
-
+router.post('/addphoto', (req, res, next) => {
+    return ProfilePhoto.create({
+        filepath: req.body.Url, 
+        userId: req.body.userId
     })
+    then(profilephoto => {
+        res.json(profilephoto)
     })
+})
+
 
 
 
