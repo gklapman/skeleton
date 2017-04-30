@@ -72,7 +72,9 @@ var User = db.define('user', {
                     gender: this.gender,
                     current_city: this.current_city,
                     birthday: this.birthday,
-                    id: this.id
+                    id: this.id, 
+                    lat: this.lat, 
+                    lng: this.lng,
                 }
                 return userInfo
             }

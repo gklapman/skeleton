@@ -6,7 +6,8 @@ export default function Navbar (props){
 	// let userId = props.userId
 	const userId = props.currentUser.id
 	const logout = props.logout
-	console.log('logout ', logout)
+	const notificationsView = props.notificationsView
+	
 	return (
 		<nav className="navigation navbar-default">
 				<form className="navbar-form " role="search">
@@ -27,7 +28,7 @@ export default function Navbar (props){
 						<Link to={`/loggedIn/profile/${userId}`}> <span className="text">My TrvlPage</span></Link>
 					</li>
 					<li>
-						<Link to='/loggedIn/profile/1'> <span className="text">Notifications</span></Link> {/*THIS WILL NEED TO GO TO NOTIFICATIONS*/}
+						<button className="notifications btn btn-default navbar-item notifications-btn" onClick={notificationsView}>Notifications</button>
 					</li>
 					<li>
 						<button className="btn btn-default navbar-item logout-button" onClick={logout}>Logout</button>

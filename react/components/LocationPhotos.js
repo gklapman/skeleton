@@ -97,7 +97,7 @@ changeUpload(){
 			  	<img className="photo-item" src={photosArr[this.state.c]}/>
 			  	<img className="photo-item" src={photosArr[this.state.d]}/>
 			  	<img className="photo-item" src={photosArr[this.state.e]}/>
-			  	{this.state.e < photosArr.length ? <button onClick={this.next} className="next-btn">&#10095;</button> : null}
+			  	{this.state.e < photosArr.length + 1 ? <button onClick={this.next} className="next-btn">&#10095;</button> : null}
 		  	</div>
 		}
 	

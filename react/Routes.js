@@ -12,12 +12,13 @@ import {getTravelpageInfoThunkCreator} from './redux/travelpage'
 import {getCurrentUserInfoThunkCreator} from './redux/currentUser'
 import {getLocationInfoThunkCreator} from './redux/location'
 import {ProfileMap} from './components/ProfileMap'
+import {getNotificationsThunkCreator} from './redux/notifications'
 
-const Routes = ({fetchProfileInfo, fetchCurrentUserInfo, fetchLocationInfo}) => (
+const Routes = ({fetchProfileInfo, fetchCurrentUserInfo, fetchLocationInfo, fetchNotifications}) => (
 	<Router history={browserHistory}>
 		<Route path="/" component={Main} onEnter={fetchCurrentUserInfo}>
 			<Route path="welcome" component={WelcomeContainer} />
-			<Route path="loggedIn/" component={LoggedInContainer}>
+			<Route path="loggedIn/" component={LoggedInContainer} onEnter={fetchNotifications}>
 				<Route path="travelfeed" component={TravelfeedContainer} />
 				<Route path="profile/:userId" component={ProfileContainer} onEnter={fetchProfileInfo} />
 				<Route path="location/:locationId" component={LocationContainer} onEnter={fetchLocationInfo}/>
@@ -45,6 +46,9 @@ const mapDispatchToProps = dispatch => ({
 		console.log('inside of fetchLocationInfo')
 		const locationId = nextRouterState.params.locationId
 		dispatch(getLocationInfoThunkCreator(locationId))
+	},
+	fetchNotifications: () => {
+		dispatch(getNotificationsThunkCreator())
 	}
 
 })

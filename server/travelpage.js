@@ -39,7 +39,6 @@ router.get('/:userId', function(req, res, next) {
     
             return Friend.findAll({
                 where: {
-                    status: 'approved',
                     $or: [
                         {user2Id: req.params.userId},
                         {user1Id: req.params.userId},      
@@ -60,16 +59,27 @@ router.get('/:userId', function(req, res, next) {
 //add friend
 
 router.post('/:userId/addbuddy', function (req, res, next){
-    console.log('inside add buddy with ', req.body.buddyId)
+    if (req.params.userId !== req.body.buddyId){
     return Friend.create({
         user1Id: req.params.userId,
         user2Id: req.body.buddyId,
         status: 'pending'
     })
     .then(buddyrequest => {
-        
+        return Notification.create({
+            user1Id: req.body.buddyId,
+            user2Id: req.params.userId,
+            type: "buddy request"
+        })
+    })
+    .then(notification => {
+        res.json(notification)
     })
     .catch(err => console.log(err))
+    } else {
+        res.send('you can not request yourself')
+    }
+    
 })
 
 router.get('/:userId/profilepics', function (req, res, next){

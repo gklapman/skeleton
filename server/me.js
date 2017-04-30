@@ -1,6 +1,6 @@
  var express = require('express');
 var router = express.Router();
-var {   db, User, Location, ProfilePhoto, LocationPhoto, Activity, Restaurant, Accomadation, LocationFriendship, Friend } = require('../db/index');
+var {   db, User, Location, ProfilePhoto, LocationPhoto, Activity, Restaurant, Accomadation, LocationFriendship, Friend, Notification } = require('../db/index');
 var Promise = require('bluebird');
 
 router.get('/', function(req, res, next){
@@ -26,6 +26,37 @@ router.post('/logout', function(req, res, next){
   req.session.destroy()
   res.send(req.session)
   
+})
+
+router.get('/notifications', (req, res, next) => {
+  let response = {};
+  let notificationsResponse;
+  let userId = req.session.user.id
+  return Notification.findAll({
+    where: {
+      user1Id: req.session.user.id
+    }, 
+    order: [['updatedAt', 'DESC']]
+  })
+  .then(notifications => {
+    notificationsResponse = notifications
+    let promisedInfo = notifications.map(noti => {
+      console.log('this is the noti', noti)
+      return (User.findOne({
+        where: {
+          id: noti.user2Id
+        }
+      }))
+    })
+    return Promise.all(promisedInfo)
+  })
+  .then(userInfo => {
+    response.userInfo = userInfo
+    response.notificationsInfo = notificationsResponse
+    console.log('this is the response', response)
+    res.json(response)
+  })
+
 })
 
 module.exports = router;

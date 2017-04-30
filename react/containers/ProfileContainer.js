@@ -80,7 +80,12 @@ class ProfileContainer extends React.Component{
 			<div className='profile-overall'>
 				{isUser}
 				<div className="map" style={{width: '100%', height: '600px'}}>
-					<ProfileMap locations={this.props.travelpageInfo.locations} handleClick={this.handleClick} travelpageInfo={this.props.travelpageInfo} addbuddy={this.addbuddy}/>
+					<ProfileMap 
+					locations={this.props.travelpageInfo.locations} 
+					handleClick={this.handleClick} 
+					travelpageInfo={this.props.travelpageInfo} 
+					addbuddy={this.addbuddy} 
+					currentUser={this.props.currentUser}/>
 				</div>
 			</div>
 		)
