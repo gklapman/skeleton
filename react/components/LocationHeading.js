@@ -9,9 +9,9 @@ const LocationHeading = (props) => {
 	 city = props.locationInfo.city
 	 overallReview = props.locationInfo.overall_review;
 	 if (props.locationInfo.starting_date !== null){
-	 startingDate = props.locationInfo.starting_date
+	 startingDate = new Date (props.locationInfo.starting_date).toDateString().slice(4)
 	 } if (props.locationInfo.ending_date !== null){
-	 endingDate = props.locationInfo.ending_date
+	 endingDate = new Date (props.locationInfo.ending_date).toDateString().slice(4)
 	 }
 	} 
 

@@ -7,12 +7,16 @@ export default function Navbar (props){
 	const userId = props.currentUser.id
 	const logout = props.logout
 	const notificationsView = props.notificationsView
-	
+	const handleChange = props.handleChange
+	const handleSubmit = props.handleSubmit
+	const searchVal = props.searchVal
+
+
 	return (
 		<nav className="navigation navbar-default">
-				<form className="navbar-form " role="search">
+				<form className="navbar-form " role="search" onSubmit={handleSubmit}>
 					<div className='navbar-item'>
-						<input type="text" className="form-control" placeholder="Search"/>
+						<input type="text" className="form-control" placeholder="Search" onChange={handleChange} value={searchVal}/>
 					</div>
 					<button className='navbar-item' type="submit" className="btn btn-default">Submit</button>
 				</form>

@@ -8,10 +8,10 @@ class TravelfeedContainer extends React.Component{
 		
 	}
 	render(){
-		console.log('inside of TravelFeedContainer')
+		console.log('inside of TravelFeedContainer!!!')
 		return (
 			<div>
-			<span> Inside of TravelFeedContainer</span>
+			<span> Inside of TravelFeedContainer!!!!</span>
 			</div>
 		)
 	}

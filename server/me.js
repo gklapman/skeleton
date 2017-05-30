@@ -34,14 +34,13 @@ router.get('/notifications', (req, res, next) => {
   let userId = req.session.user.id
   return Notification.findAll({
     where: {
-      user1Id: req.session.user.id
+      user1Id: userId
     }, 
     order: [['updatedAt', 'DESC']]
   })
   .then(notifications => {
     notificationsResponse = notifications
     let promisedInfo = notifications.map(noti => {
-      console.log('this is the noti', noti)
       return (User.findOne({
         where: {
           id: noti.user2Id
@@ -53,7 +52,6 @@ router.get('/notifications', (req, res, next) => {
   .then(userInfo => {
     response.userInfo = userInfo
     response.notificationsInfo = notificationsResponse
-    console.log('this is the response', response)
     res.json(response)
   })
 

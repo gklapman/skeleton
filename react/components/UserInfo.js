@@ -1,4 +1,5 @@
 import React from 'react';
+import {browserHistory} from 'react-router'
 
 const UserInfo = ({travelpageInfo, addbuddy, currentUser}) => {
 	const name = travelpageInfo.first_name
@@ -12,12 +13,12 @@ const UserInfo = ({travelpageInfo, addbuddy, currentUser}) => {
 		}
 	let buddyBtn;
 		if (currentUser.id !== travelpageInfo.id && travelpageInfo.friends){
-			console.log
+			console.log('this is the friends', friends)
 			let friends = (travelpageInfo.friends.some(friend => {
-				return (friend.user1Id === currentUser.id)
+				return (friend.user1Id === currentUser.id || friend.user2Id === currentUser.id)
 			}))
 			if (!friends){
-				console.log('made it')
+				
 				buddyBtn = <button onClick={addbuddy} value={buddyId} className='btn btn-default addbuddy-btn'>Add <br/> Trvlbuddy</button>
 			}
 		} else {

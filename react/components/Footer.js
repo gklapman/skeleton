@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => (
 	<div className="footer text-center">
 		<span>
-		<p>Stackathon by Gabi Klapman</p>
+		<p>Project by Gabi Klapman</p>
 		</span>
 	</div>
 

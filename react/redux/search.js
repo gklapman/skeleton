@@ -6,27 +6,27 @@ import store from '../store'
 
 /* -----------------    ACTIONS     ------------------ */
 
-const SET_NOTIFICATIONS = 'SET_NOTIFICATIONS';
+const SET_SEARCH_RESULTS = 'SET_SEARCH_RESULTS';
 
 
 
 /* ------------   ACTION CREATORS     ------------------ */
 
-const setNotifications = notifications => ({ type: SET_NOTIFICATIONS, notifications });
+const setSearchResults = searchResults => ({ type: SET_SEARCH_RESULTS, searchResults });
 
 
 
 /* ------------       REDUCER     ------------------ */
 
-export default function reducer (notifications = [], action) {
+export default function reducer (searchResults = {}, action) {
   switch (action.type) {
 
-    case SET_NOTIFICATIONS: 
-      return action.notifications;
+    case SET_SEARCH_RESULTS:
+      return action.searchResults;
 
 
     default:
-      return notifications;
+      return searchResults;
   }
 }
 
@@ -34,11 +34,11 @@ export default function reducer (notifications = [], action) {
 
 /* ------------       DISPATCHERS     ------------------ */
 
-export const getNotificationsThunkCreator = function (){
+export const getSearchResultsThunkCreator = function (searcheditem){
 	return (dispatch, getState) => {
-	return axios.get(`/api/me/notifications`)
+	return axios.get(`/api/travelpage/search/?search=${searcheditem}`)
 	.then(res => {
-		dispatch(setNotifications(res.data))
+		dispatch(setSearchResults(res.data))
 	})
 	.catch(err => console.error(err))
 		

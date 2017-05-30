@@ -28,6 +28,8 @@ a {
 	padding: 20px;
 }
 
+
+
 .login-item, .navbar-item {
 	display: inline-block;
 }
@@ -243,7 +245,7 @@ a {
 }
 
 .user-info {
-  margin-left: 400px;
+  margin-left: 500px;
   margin-top: 30px;
   display: flex;
 }
@@ -300,3 +302,45 @@ a {
   color: #2F4F4F;
 }
 
+.accept-btn {
+  height: 20px;
+  width: 40px;
+  font-size: 10px;
+  padding: 2px;
+}
+
+.overall-review{
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+p, h2, .location-name {
+  font-family: 'Lato', sans-serif;
+}
+
+p {
+  font-size: 16px;
+}
+
+.user-result {
+  display: flex;
+  margin: 20px;
+}
+
+.pic-search-result {
+  height: 100px;
+  border: 1px solid black;
+  width: 100px;
+}
+
+.search-name {
+  margin-left: 10px;
+  width: 200px;
+}
+
+#notis {
+  margin-left: 20px;
+
+}

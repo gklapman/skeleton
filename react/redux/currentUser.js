@@ -77,10 +77,10 @@ export const getCurrentUserInfoThunkCreator = () => dispatch => {
 	})
 	.then(userObj => {
 		dispatch(setUser(userObj))
-		// if (!userObj.id){
-		// const path = '/welcome'
-		// browserHistory.replace(path)
-		// } 
+		if (!userObj.id){
+		const path = '/welcome'
+		browserHistory.replace(path)
+		} 
 	})
 	.catch(err => console.error(err))
 	}

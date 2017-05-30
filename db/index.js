@@ -53,23 +53,23 @@ Location.hasMany(Restaurant, {onDelete: 'cascade', hooks: true})
 
 //FIRST TABLE HAS THE MAGIC KEY
 
-User.belongsToMany(User, {
-    as: 'user2',
-    through: {
-        model: Notification, 
-    },
-    foreignKey: 'user1Id'
-})
+// User.belongsToMany(User, {
+//     as: 'user2',
+//     through: {
+//         model: Notification, 
+//     },
+//     foreignKey: 'user1Id'
+// })
 
 
 
-User.belongsToMany(User, {
-    as: 'user2',
-    through: {
-        model: TravelFeed, 
-    },
-    foreignKey: 'user1Id'
-})
+// User.belongsToMany(User, {
+//     as: 'user2',
+//     through: {
+//         model: TravelFeed, 
+//     },
+//     foreignKey: 'user1Id'
+// })
 
 
 
