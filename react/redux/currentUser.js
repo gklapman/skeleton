@@ -59,15 +59,29 @@ export const createUserThunkCreator = function (createaccountInfo){
 			return res.data
 		})
 		.then(userObj => {
+			console.log('user obj', userObj)
 			if (typeof userObj == 'string'){
 				return userObj
 			}
 			dispatch(setUser(userObj))
-			const path = '/loggedIn/travelfeed' //will need to make this go to upload prof pic
+			const path = '/loggedIn/additionalinfo' //will need to make this go to upload prof pic
 			browserHistory.push(path)
 		})
 		.catch(err => console.error(err))
 	}
+}
+
+export const additionalInfoThunkCreator = (additionalInfo, userId) => dispatch => {
+	return axios.put(`/api/createaccount/${userId}`, {additionalInfo})
+	.then(res => {
+		return res.data
+	})
+	.then(updatedUser => {
+		dispatch(setUser(updatedUser))
+		const path = '/loggedIn/travelfeed' //will need to make this go to upload prof pic
+			browserHistory.push(path)
+	})
+	.catch(err => console.error(err))
 }
 
 export const getCurrentUserInfoThunkCreator = () => dispatch => {

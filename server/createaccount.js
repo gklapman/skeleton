@@ -11,7 +11,7 @@ var fs = require('fs');
 // /api/createaccount
 router.post('/', (req, res, next) => {
     console.log('this is the info', req.body.createaccountInfo)
-     const {first_name, last_name, password, birthday, gender, email} = req.body.createaccountInfo
+     const {first_name, last_name, password, email} = req.body.createaccountInfo
     //WILL WANT TO CHECK IF EMAIL ALREADY EXISTS
     return User.findOne({
             where: {
@@ -29,8 +29,7 @@ router.post('/', (req, res, next) => {
                     first_name: first_name,
                     last_name: last_name,
                     password: password,
-                    birthday: birthday,
-                    gender: gender,
+    
                     
                     
 
@@ -48,8 +47,20 @@ router.post('/', (req, res, next) => {
     .catch(err => console.error(err))
 })
 
+//add additional info to an account 
 
-    
+router.put('/:userId', (req, res, next) => {
+    const {birthday, gender, current_city} = req.body.additionalInfo
+    return User.findOne({where: {
+        id: req.params.userId
+    }})
+    .then(user => {
+        user.update({birthday, gender, current_city})
+    })
+    .then(updatedUser => {
+        res.json(updatedUser)
+    })
+})
 
     
 

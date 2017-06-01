@@ -58,7 +58,8 @@ a {
 .createaccount {
 	display: flex;
 	flex-direction: row-reverse;
-	margin: 3%;
+	padding: 3%;
+  margin-top: 1%;
   opacity: 1;
   height: 500px;
 }

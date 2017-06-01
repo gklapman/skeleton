@@ -47,7 +47,7 @@ class LoginContainer extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
 	return {
-		currentUser: state.currentUser
+		currentUser: state.currentUser, 
 	}
 	
 }

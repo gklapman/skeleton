@@ -8,6 +8,7 @@ import TravelfeedContainer from './containers/TravelfeedContainer'
 import ProfileContainer from './containers/ProfileContainer'
 import LocationContainer from './containers/LocationContainer'
 import Search from './components/Search'
+import AccountDetailsContainer from './containers/AccountDetailsContainer'
 
 import {getTravelpageInfoThunkCreator} from './redux/travelpage'
 import {getCurrentUserInfoThunkCreator} from './redux/currentUser'
@@ -24,6 +25,7 @@ const Routes = ({fetchProfileInfo, fetchCurrentUserInfo, fetchLocationInfo, fetc
 				<Route path="profile/:userId" component={ProfileContainer} onEnter={fetchProfileInfo} />
 				<Route path="location/:locationId" component={LocationContainer} onEnter={fetchLocationInfo}/>
 				<Route path="search" component={Search}/>
+				<Route path="additionalinfo" component={AccountDetailsContainer} />
 			</Route>
 		</Route>
 	</Router>

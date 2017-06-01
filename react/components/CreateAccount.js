@@ -5,46 +5,46 @@ const CreateAccount = ({handleSubmit}) => {
 
     {/*<div id="earth">*/}
   return (
-    <div className="createaccount" >
-    <div className="createaccount-item">
-    <h2 className="create-header">Create Your Own <span className="glyphicon glyphicon-plane"></span>rvlPage</h2>
-	 <form className="form-group" onSubmit={handleSubmit}>
-      <div>
-        <label>First Name</label>
-        <div className="">
-          <Field className='form-control black' name="first_name" component="input" type="text" placeholder="First Name"/>
-        </div>
+    <div className="createaccount" id="earth">
+      <div className="createaccount-item">
+        <h2 className="create-header">Create Your Own <span className="glyphicon glyphicon-plane"></span>rvlPage</h2>
+    	  <form className="form-group" onSubmit={handleSubmit}>
+          <div>
+            <label>First Name</label>
+            <div className="">
+              <Field className='form-control black' name="first_name" component="input" type="text" placeholder="First Name"/>
+            </div>
+          </div>
+          <div>
+            <label>Last Name</label>
+            <div>
+              <Field className='form-control black'  name="last_name" component="input" type="text" placeholder="Last Name"/>
+            </div>
+          </div>
+          <div>
+            <label>Email</label>
+            <div>
+              <Field className='form-control black' name="email" component="input" type="email" placeholder="Email"/>
+            </div>
+          </div>
+           <div>
+            <label>Password</label>
+            <div>
+              <Field className='form-control black' name="password" component="input" type="text" placeholder="Password"/>
+            </div>
+          </div>
+          {/*<div>
+            <label>Gender (optional)</label>
+            <div>
+              <label><Field name="gender" component="input" type="radio" value="male"/> Male</label>
+              <label><Field name="gender" component="input" type="radio" value="female"/> Female</label>
+            </div>
+          </div>*/}
+          <div>
+            <button className='btn btn-primary' type="submit">Submit</button>
+          </div>
+        </form>
       </div>
-      <div>
-        <label>Last Name</label>
-        <div>
-          <Field className='form-control black'  name="last_name" component="input" type="text" placeholder="Last Name"/>
-        </div>
-      </div>
-      <div>
-        <label>Email</label>
-        <div>
-          <Field className='form-control black' name="email" component="input" type="email" placeholder="Email"/>
-        </div>
-      </div>
-       <div>
-        <label>Password</label>
-        <div>
-          <Field className='form-control black' name="password" component="input" type="text" placeholder="Password"/>
-        </div>
-      </div>
-      {/*<div>
-        <label>Gender (optional)</label>
-        <div>
-          <label><Field name="gender" component="input" type="radio" value="male"/> Male</label>
-          <label><Field name="gender" component="input" type="radio" value="female"/> Female</label>
-        </div>
-      </div>*/}
-      <div>
-        <button className='btn btn-primary' type="submit">Submit</button>
-      </div>
-    </form>
-    </div>
     </div>
 
   )
