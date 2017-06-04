@@ -19,6 +19,7 @@ class AccountDetailsContainer extends React.Component {
 		}
 		// this.handleChange = this.handleChange.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
+		this.skip = this.skip.bind(this)
 		// this.handleInitialSubmit = this.handleInitialSubmit.bind(this)
 	}
 
@@ -28,10 +29,15 @@ class AccountDetailsContainer extends React.Component {
 		this.props.additionalInfo(additionalInfo, userId)
 	}
 
+	skip(){
+		const path = '/loggedIn/travelfeed' //will make this go to upload prof pic? and add locations
+			browserHistory.push(path)
+	}
+
 	render(){
 		return (
 			<div className="create-account-container"> 
-			<AccountDetails onSubmit={this.handleSubmit}/>
+			<AccountDetails onSubmit={this.handleSubmit} skip={this.skip}/>
 			</div>
 		)
 	}

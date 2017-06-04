@@ -49665,7 +49665,8 @@ var _reduxForm = __webpack_require__(213);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var AccountDetails = function AccountDetails(_ref) {
-  var handleSubmit = _ref.handleSubmit;
+  var handleSubmit = _ref.handleSubmit,
+      skip = _ref.skip;
 
 
   return _react2.default.createElement(
@@ -49754,7 +49755,7 @@ var AccountDetails = function AccountDetails(_ref) {
           null,
           _react2.default.createElement(
             'button',
-            null,
+            { onClick: skip },
             'Skip for now'
           )
         )
@@ -49823,6 +49824,7 @@ var AccountDetailsContainer = function (_React$Component) {
 
 		// this.handleChange = this.handleChange.bind(this)
 		;_this.handleSubmit = _this.handleSubmit.bind(_this);
+		_this.skip = _this.skip.bind(_this);
 		// this.handleInitialSubmit = this.handleInitialSubmit.bind(this)
 		return _this;
 	}
@@ -49835,12 +49837,18 @@ var AccountDetailsContainer = function (_React$Component) {
 			this.props.additionalInfo(additionalInfo, userId);
 		}
 	}, {
+		key: 'skip',
+		value: function skip() {
+			var path = '/loggedIn/travelfeed'; //will make this go to upload prof pic? and add locations
+			_reactRouter.browserHistory.push(path);
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			return _react2.default.createElement(
 				'div',
 				{ className: 'create-account-container' },
-				_react2.default.createElement(_AccountDetails2.default, { onSubmit: this.handleSubmit })
+				_react2.default.createElement(_AccountDetails2.default, { onSubmit: this.handleSubmit, skip: this.skip })
 			);
 		}
 	}]);

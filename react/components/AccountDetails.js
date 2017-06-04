@@ -1,7 +1,7 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form'
 
-const AccountDetails= ({handleSubmit}) => {
+const AccountDetails= ({handleSubmit, skip}) => {
 
 
   return (
@@ -33,7 +33,7 @@ const AccountDetails= ({handleSubmit}) => {
             <button className='btn btn-primary' type="submit">Submit</button>
           </div>
           <div> 
-            <button>Skip for now</button>
+            <button onClick={skip}>Skip for now</button>
           </div>
         </form>
       </div>
