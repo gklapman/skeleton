@@ -7,7 +7,6 @@ import UserInfo from './UserInfo'
 
 const ProfileMap = ({locations, handleClick, travelpageInfo, addbuddy, currentUser}) => {
   
-    console.log('this is the travelpageInfo', travelpageInfo)
     let lat = Number(travelpageInfo.lat)
     let lng = Number(travelpageInfo.lng)
     return (

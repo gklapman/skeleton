@@ -3595,8 +3595,6 @@ var additionalInfoThunkCreator = exports.additionalInfoThunkCreator = function a
 			return res.data;
 		}).then(function (updatedUser) {
 			dispatch(setUser(updatedUser));
-			var path = '/loggedIn/travelfeed'; //will need to make this go to upload prof pic
-			_reactRouter.browserHistory.push(path);
 		}).catch(function (err) {
 			return console.error(err);
 		});
@@ -11072,7 +11070,6 @@ var ProfileMap = function ProfileMap(_ref) {
       currentUser = _ref.currentUser;
 
 
-  console.log('this is the travelpageInfo', travelpageInfo);
   var lat = Number(travelpageInfo.lat);
   var lng = Number(travelpageInfo.lng);
   return _react2.default.createElement(
@@ -49666,15 +49663,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var AccountDetails = function AccountDetails(_ref) {
   var handleSubmit = _ref.handleSubmit,
-      skip = _ref.skip;
+      skipAdditional = _ref.skipAdditional;
 
 
   return _react2.default.createElement(
     'div',
-    { className: 'createaccount-details' },
+    { className: 'createaccount-details-container' },
     _react2.default.createElement(
       'div',
-      { className: 'createaccount-item' },
+      { className: 'createaccount-details' },
       _react2.default.createElement(
         'h2',
         { className: 'create-header' },
@@ -49718,7 +49715,7 @@ var AccountDetails = function AccountDetails(_ref) {
         ),
         _react2.default.createElement(
           'div',
-          null,
+          { className: 'gender' },
           _react2.default.createElement(
             'label',
             null,
@@ -49743,20 +49740,24 @@ var AccountDetails = function AccountDetails(_ref) {
         ),
         _react2.default.createElement(
           'div',
-          null,
+          { className: 'details-btn' },
           _react2.default.createElement(
-            'button',
-            { className: 'btn btn-primary', type: 'submit' },
-            'Submit'
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          null,
+            'div',
+            null,
+            _react2.default.createElement(
+              'button',
+              { className: 'btn btn-primary', type: 'submit' },
+              'Submit'
+            )
+          ),
           _react2.default.createElement(
-            'button',
-            { onClick: skip },
-            'Skip for now'
+            'div',
+            null,
+            _react2.default.createElement(
+              'button',
+              { className: 'btn btn-default', onClick: skipAdditional },
+              'Skip for now'
+            )
           )
         )
       )
@@ -49795,6 +49796,12 @@ var _AccountDetails2 = _interopRequireDefault(_AccountDetails);
 
 var _currentUser = __webpack_require__(34);
 
+var _ProfPic = __webpack_require__(592);
+
+var _ProfPic2 = _interopRequireDefault(_ProfPic);
+
+var _travelpage = __webpack_require__(78);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -49813,19 +49820,14 @@ var AccountDetailsContainer = function (_React$Component) {
 
 		var _this = _possibleConstructorReturn(this, (AccountDetailsContainer.__proto__ || Object.getPrototypeOf(AccountDetailsContainer)).call(this));
 
-		_this.state = {}
-		// additionalAccountDetails: false
-		// 	// formEmail: '',
-		// 	// formPassword: '',
-		// 	// formFirstName: '',
-		// 	// formLastName: '',
-		// 	// formGender: null,
-		// 	// formBirthday: null,
+		_this.state = {
+			profilePic: false
+		};
+		_this.handleSubmit = _this.handleSubmit.bind(_this);
+		_this.next = _this.next.bind(_this);
+		_this.handlePhotoSubmit = _this.handlePhotoSubmit.bind(_this);
+		_this.skipAdditional = _this.skipAdditional.bind(_this);
 
-		// this.handleChange = this.handleChange.bind(this)
-		;_this.handleSubmit = _this.handleSubmit.bind(_this);
-		_this.skip = _this.skip.bind(_this);
-		// this.handleInitialSubmit = this.handleInitialSubmit.bind(this)
 		return _this;
 	}
 
@@ -49835,12 +49837,26 @@ var AccountDetailsContainer = function (_React$Component) {
 			var additionalInfo = this.props.accountDetails.values;
 			var userId = this.props.currentUser.id;
 			this.props.additionalInfo(additionalInfo, userId);
+			this.setState({ profilePic: true });
 		}
 	}, {
-		key: 'skip',
-		value: function skip() {
+		key: 'handlePhotoSubmit',
+		value: function handlePhotoSubmit(evt) {
+			var userId = this.props.currentUser.id;
+			Promise.resolve((0, _travelpage.postProfThunkCreator)(evt.target.files[0], userId)).then(function (res) {
+				console.log('this is the res', res);
+			});
+		}
+	}, {
+		key: 'next',
+		value: function next() {
 			var path = '/loggedIn/travelfeed'; //will make this go to upload prof pic? and add locations
 			_reactRouter.browserHistory.push(path);
+		}
+	}, {
+		key: 'skipAdditional',
+		value: function skipAdditional() {
+			this.setState({ profilePic: true });
 		}
 	}, {
 		key: 'render',
@@ -49848,7 +49864,7 @@ var AccountDetailsContainer = function (_React$Component) {
 			return _react2.default.createElement(
 				'div',
 				{ className: 'create-account-container' },
-				_react2.default.createElement(_AccountDetails2.default, { onSubmit: this.handleSubmit, skip: this.skip })
+				this.state.profilePic ? _react2.default.createElement(_ProfPic2.default, { handlePhotoSubmit: this.handlePhotoSubmit, next: this.next }) : _react2.default.createElement(_AccountDetails2.default, { onSubmit: this.handleSubmit, skipAdditional: this.skipAdditional })
 			);
 		}
 	}]);
@@ -49873,6 +49889,60 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(AccountDetailsContainer);
+
+/***/ }),
+/* 592 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = __webpack_require__(11);
+
+var _travelpage = __webpack_require__(78);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ProfPic = function ProfPic(_ref) {
+	var handlePhotoSubmit = _ref.handlePhotoSubmit,
+	    next = _ref.next;
+
+
+	return _react2.default.createElement(
+		'div',
+		{ className: 'profile-pic' },
+		_react2.default.createElement(
+			'h2',
+			{ className: 'upload-prof' },
+			'Upload Profile Picture'
+		),
+		_react2.default.createElement(
+			'div',
+			{ className: 'prof-upload' },
+			_react2.default.createElement('input', { className: 'prof-pic', type: 'file', name: 'imgS3', accept: 'image/*', onChange: handlePhotoSubmit }),
+			_react2.default.createElement(
+				'button',
+				{ className: 'btn btn-default', onClick: next },
+				'Upload'
+			),
+			_react2.default.createElement(
+				'button',
+				{ className: 'btn btn-default', onClick: next },
+				'Skip For Now'
+			)
+		)
+	);
+};
+
+exports.default = ProfPic;
 
 /***/ })
 /******/ ]);

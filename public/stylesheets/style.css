@@ -336,6 +336,7 @@ p {
   width: 100px;
 }
 
+
 .search-name {
   margin-left: 10px;
   width: 200px;
@@ -344,4 +345,42 @@ p {
 #notis {
   margin-left: 20px;
 
+}
+
+.createaccount-details {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.create-better {
+  text-align: center;
+}
+
+.gender{
+  margin-bottom: 5px;
+}
+
+.details-btn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.createaccount-details-container{
+  width: 70%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.upload-prof {
+  text-align: center
+}
+
+.prof-upload {
+  text-align: center;
+}
+
+.prof-pic {
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 10px;
 }

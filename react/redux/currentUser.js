@@ -78,8 +78,6 @@ export const additionalInfoThunkCreator = (additionalInfo, userId) => dispatch =
 	})
 	.then(updatedUser => {
 		dispatch(setUser(updatedUser))
-		const path = '/loggedIn/travelfeed' //will need to make this go to upload prof pic
-			browserHistory.push(path)
 	})
 	.catch(err => console.error(err))
 }
