@@ -6,27 +6,27 @@ import store from '../store'
 
 /* -----------------    ACTIONS     ------------------ */
 
-const SET_SEARCH_RESULTS = 'SET_SEARCH_RESULTS';
+const EXAMPLE = 'EXAMPLE';
 
 
 
 /* ------------   ACTION CREATORS     ------------------ */
 
-const setSearchResults = searchResults => ({ type: SET_SEARCH_RESULTS, searchResults });
+const exampleAction = exampleInfo => ({ type: EXAMPLE, exampleInfo });
 
 
 
 /* ------------       REDUCER     ------------------ */
 
-export default function reducer (searchResults = {}, action) {
+export default function reducer (exampleObj = {}, action) {
   switch (action.type) {
 
-    case SET_SEARCH_RESULTS:
-      return action.searchResults;
+    case EXAMPLE: 
+      return action.exampleInfo;
 
 
     default:
-      return searchResults;
+      return exampleObj;
   }
 }
 
@@ -34,15 +34,20 @@ export default function reducer (searchResults = {}, action) {
 
 /* ------------       DISPATCHERS     ------------------ */
 
-export const getSearchResultsThunkCreator = function (searcheditem){
+export const exampleDispatcher = function (exampleInfo){
 	return (dispatch, getState) => {
-	return axios.get(`/api/travelpage/search/?search=${searcheditem}`)
+	return axios.get(`/api/example/`)
 	.then(res => {
-		dispatch(setSearchResults(res.data))
+		return res.data
 	})
+	.then(exampleInfo => {
+		dispatch(exampleAction(exampleInfo))
+	})
+
 	.catch(err => console.error(err))
 		
 	}
 }
+
 
 

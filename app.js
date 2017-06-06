@@ -1,8 +1,6 @@
 var express = require('express');
-var nunjucks = require('nunjucks');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
-var {   db, User, Location, ProfilePhoto, LocationPhoto, Activity, Restaurant, Accomadation, LocationFriendship, Friend } = require('./db/index');
 var Sequelize = require('sequelize');
 var Promise = require('bluebird');
 var path = require('path')
@@ -33,27 +31,13 @@ app.use(session({
   saveUninitialized: false
 }));
 
-// app.use(function (req, res, next) {
-//   console.log('session', req.session);
-//   next();
-// });
-
 
 // ---------------------------- ROUTERS -------------------------------//
 
-var travelpageRouter = require('./server/travelpage');
-var travelfeedRouter = require('./server/travelfeed');
-var locationRouter = require('./server/location')
-var createaccountRouter = require('./server/createaccount')
-var loginRouter = require('./server/login')
-var meRouter = require('./server/me')
 
-app.use('/api/travelpage', travelpageRouter);
-app.use('/api/travelfeed', travelfeedRouter);
-app.use('/api/location', locationRouter);
-app.use('/api/createaccount', createaccountRouter);
-app.use('/api/login', loginRouter);
-app.use('/api/me', meRouter);
+const exampleRouter = require('./server/example')
+
+app.use('/api/example', exampleRouter);
 
 //---------------------- STATIC FILE ERROR CATCHER----------------------//
 
@@ -83,8 +67,8 @@ app.use(function(err, req, res, next) {
 
 // -------------------------CONNECT TO SERVER-------------------------//
 
-app.listen(3001, function() {
-    console.log('Server is listening on port 3001!');
+app.listen(3000, function() {
+    console.log('Server is listening on port 3000!');
 });
 
 
