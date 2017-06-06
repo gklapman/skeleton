@@ -2,6 +2,10 @@ Welcome to TrvlPage, a social media site for travelers to record their travels a
 
 For presentation of project as of 5/1/17: http://www.youtube.com/watch/RfPrqTlj6U8
 
+To run: 
+
+Fork and Clone this repo.
+Then:
 ```bash
 npm install
 ```
