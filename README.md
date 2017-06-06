@@ -5,6 +5,7 @@ For presentation of project as of 5/1/17: http://www.youtube.com/watch/RfPrqTlj6
 To run: 
 
 Fork and Clone this repo.
+
 Then:
 ```bash
 npm install
