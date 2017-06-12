@@ -9,6 +9,6 @@ router.get('/', function(req, res, next){
     res.json(allInfo)
   })
   .catch(next)
-}
+})
 
 module.exports = router;
